@@ -57,7 +57,7 @@ jobs:
           cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ vars.DOCKER_HUB_REPO }}:cache,mode=max
 
       - name: SSH and Deploy on EC2
-        uses: appleboy/ssh-action@v0.1.12
+        uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
