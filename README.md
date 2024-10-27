@@ -35,8 +35,8 @@ This repository is set up with GitHub Actions to automate the process of buildin
 
 ### Variables and Secrets
 
-- In your GitHub repository settings, navigate to Secrets and add the following secrets:
+- In your GitHub repository settings, navigate to **Secrets and variables > actions > Repository Secrets** and add the following secrets:
   - DOCKER_USERNAME: Your Docker Hub username.
   - DOCKER_PASSWORD: Your Docker Hub password.
-- And define a variable for your Docker Hub repository:
+- Define a variable for your Docker Hub repository by navigating to **Settings > Secrets and variables > Actions > Repository Variables**.
   - DOCKER_HUB_REPO: Set this variable to the name of your Docker Hub repository (e.g., your-dockerhub-username/node-app).
