@@ -2,7 +2,7 @@ const app = require("express")();
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Hello World From Another Branch!",
+    message: "Hello World!",
   });
 });
 
