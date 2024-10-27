@@ -56,4 +56,24 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ vars.DOCKER_HUB_REPO }}:cache
           cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ vars.DOCKER_HUB_REPO }}:cache,mode=max
 
+      - name: SSH and Deploy on EC2
+        uses: appleboy/ssh-action@v0.1.12
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/${{ vars.DOCKER_HUB_REPO }}:${{ github.sha }}"
+            CONTAINER_NAME=$(basename "$IMAGE_NAME" | cut -d':' -f1)  # Extract "docker repo name" as container name
+
+            # Pull the latest image from Docker Hub
+            docker pull "$IMAGE_NAME"
+
+            # Stop and remove the current container if it's running
+            docker stop "$CONTAINER_NAME" || true
+            docker rm "$CONTAINER_NAME" || true
+
+            # Run a new container with the latest image
+            docker run -d --name "$CONTAINER_NAME" -p 80:3000 "$IMAGE_NAME"
+
       # Optional: Add any cleanup steps or notifications here
