@@ -51,9 +51,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/$DOCKER_HUB_REPO:latest
-            ${{ secrets.DOCKER_USERNAME }}/$DOCKER_HUB_REPO:${{ github.sha }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/$DOCKER_HUB_REPO:cache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/$DOCKER_HUB_REPO:cache,mode=max
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:latest
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:cache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:cache,mode=max
 
       # Optional: Add any cleanup steps or notifications here
