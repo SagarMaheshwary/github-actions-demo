@@ -5,6 +5,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Test successful!\""
+    "test": "echo \"Test failed!\" && exit 1"
   }
 }
