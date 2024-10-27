@@ -37,8 +37,8 @@ jobs:
           context: .
           push: true
           tags: |
-            sagarmaheshwary/node-app:latest
-            sagarmaheshwary/node-app:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/node-app:latest
+            ${{ secrets.DOCKER_USERNAME }}/node-app:${{ github.sha }}
           cache-from: type=registry
           cache-to: type=inline
 
